@@ -1,0 +1,33 @@
+*{margin:0;padding:0}
+.wrapper{margin:0 auto;width:980px;height:1386px;}
+.header{margin:0 auto;width:892px;height:61px;border-bottom:2px solid #938e8c}
+.logo{width:110px;height:61px;background:#d45d5c;overflow: hidden}
+.logo p{font:12px 黑体;color:#ffffff;margin:45px 0 0 7px }
+.date{font:12px 黑体;color:#d45d5c;float:right;margin-top: -18px}
+.content{width:892px;margin:0 auto;padding-top: 34px}
+.pic1{width:641px;height:301px;background:url("images/task_1_6_1_03.jpg");float: left}
+.zhe{width:191px;height:301px;opacity: 0.5;}
+.box1{width:203px;border-top:2px solid #cc8091;float: left;margin-left: 48px}
+.box1>span{color:#cc8091;position: relative;top:-12px;}
+.box2{color:#767777;font:12px 宋体;width:641px;float: left;margin-top: 10px}
+.box2_h{font:bold 16px 微软雅黑;text-decoration: underline}
+.box2_p{width:130px;font:12px 微软雅黑;color:#231815;opacity: 70%;}
+.box2_p span{color:#cd4a48;font-style: italic}
+.box3{width:415px;float: left;margin-top: 70px}
+.box3_p1{font:italic bold 72px 黑体;color:#f5e327;width:360px;line-height: 32px}
+.box3_p1 span{font-style:normal;font-size:42px;color:#11456b;padding-left:20px}
+.box3_p2{font:bold 33px 黑体;color:#11456b;width:415px;border-bottom:2px solid #11456b;line-height: 50px}
+.box3_con{width:415px;font:12px 宋体;color:#767777;line-height:16px;padding-top:24px}
+.box3_con b{font:70px 微软雅黑;color:#f5e327;float:left;width:83px;margin-top: -15px}
+.box3_con img{float:right;margin:15px 0 15px 15px;}
+.box4{width:458;float: left;margin:70px 0 0 19px}
+.pic2{width:458px;height:257px;background:url("images/3.jpg");overflow: hidden}
+.pic2_black{width:458px;height:61px;background:rgba(0,0,0,0.4);margin-top: 196px;padding:8px}
+.pic2_black span:first-child{display:inline-block;width:120px;margin-left:30px;text-align:center;font:26px 微软雅黑;color:#ffffff;height:44px;border-left:3px solid #72b16a}
+.pic2_black span:last-child{display:inline-block;letter-spacing:140%;font:italic 12px 微软雅黑;color:#72b16a;}
+.box4_con{width:428px;height:318px;background:#eeedd6;margin-top: 30px;padding:30px 0 0 30px}
+.box4_p1{font:16px 宋体;color:#5a5b5b;margin-bottom: 20px}
+.box4_p1 span:first-child{border-bottom:10px solid #10456b;border-right:5px solid transparent;border-left:5px solid transparent;width:0;height:0;position: relative;top:-12px;left:-3px}
+.box4_p1 span:last-child{font:italic 12px 宋体;color:#5a5b5b;}
+.box4_b{position: relative;background:#d45d5c;width:260px;height:160px;top:40px;left:-30px}
+.box4_b>p{font:110px 微软雅黑;color:#ffffff;float:left;margin-left: 15px;border-right: 2px solid white;width:64px;height:86px}
