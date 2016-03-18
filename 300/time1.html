@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>时间</title>
+</head>
+
+<body>
+<p id="div1">time</p>
+</body>
+<script>
+
+    setInterval("clock()",1000);  /*忘记要加引号*/
+    function clock(){
+        var dates=new Date();
+        var hours=dates.getHours();
+        var min=dates.getMinutes();
+        var sen=dates.getSeconds();
+        var div1=document.getElementById("div1");
+        if(hours<=12){div1.innerHTML=hours+":"+min+":"+sen+" am";}
+        else{hours=hours-12;div1.innerHTML=hours+":"+min+":"+sen+" pm";}
+    }
+
+</script>
+</html>

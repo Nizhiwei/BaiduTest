@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>时间</title>
+</head>
+
+<body>
+<p id="div1">time</p>
+</body>
+<script>
+
+    setInterval("clock()",1000);  /*忘记要加引号*/
+    function clock(){
+        var dates=new Date();
+        var year=dates.getFullYear();
+        var mon=dates.getMonth();
+        var day=dates.getDate();  /*返回一个月的某天1-31*/
+        var sun=dates.getDay();   /*返回一周中的某天0-6,星期日是0*/
+        var sri=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        var div1=document.getElementById("div1");
+        div1.innerHTML="今天是 ："+year+"年"+(mon+1)+"月"+day+"日"+sri[sun];
+
+    }
+
+</script>
+</html>

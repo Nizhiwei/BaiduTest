@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>时间</title>
+</head>
+
+<body>
+<p id="div1">time</p>
+
+</body>
+<script>
+
+    setInterval("clock()",1000);  /*忘记要加引号*/
+    function clock(){
+        var dates=new Date();
+        var tim="8/26/2015";
+        var fru=new Date(tim);
+        fru.setHours(6);
+        var div1=document.getElementById("div1");
+        var num=60*60*24;
+        if(dates>fru){var cha=(dates-fru)/1000}
+        else{cha=(fru-dates)/1000}
+        var day=Math.floor(cha/num);
+        var hour=Math.floor((cha/num-day)*24);
+        var min=Math.floor(((cha/num-day)*24-hour)*60);
+        var sen=Math.floor(((((cha/num-day)*24-hour)*60)-min)*60);
+div1.innerHTML="距离"+tim+"已经过去了"+day+"天"+hour+"小时"+min+"分"+sen+"秒";
+    }
+
+</script>
+</html>

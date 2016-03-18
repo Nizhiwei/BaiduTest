@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="se"></div>
+</body>
+<script>
+    setInterval("tim()",1000);
+    function tim(){
+        var dat=new Date();
+        var mon=dat.getMonth();
+        var day=dat.getDate();
+        var num=["","一","二","三","四","五","六","七","八","九","拾"];
+function wen(zi){
+    if(zi<=10){return num[zi]
+    }
+    else if(10<zi&&zi<20){zi=zi-10;
+        return ("十"+num[zi])
+    }else if(20<=zi&&zi<30){zi=zi-20;
+        return "二十"+num[zi]
+    }else if(zi>=30){zi=zi-30;
+        return "三十"+num[zi]
+    }
+}
+        var se=document.getElementById("se");
+se.innerHTML=wen(mon+1)+"月"+wen(day)+"日";
+    }
+</script>
+</html>

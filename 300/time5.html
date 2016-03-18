@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div style="width:200px;height:200px;border:2px solid black;border-radius: 200px;position: relative">
+    <div id="se" style="position: absolute;width:1px;height:95px;left: 100px;top:5px;background:black;transform-origin:0 100%;transform:rotate(0deg)"></div>
+    <div id="mi" style="position:absolute;width:2px;height:80px;left: 100px;top:20px;background:black;transform-origin:0 100%;transform:rotate(0deg)"></div>
+    <div id="ho" style="position:absolute;width:3px;height:60px;left: 100px;top:40px;background:black;transform-origin:0 100%;transform:rotate(0deg)"></div>
+    <div style="position:absolute;width:10px;height:10px;border-radius: 10px;left: 95px;top:95px;background:black;"></div>
+</div>
+</body>
+<script>
+    setInterval("tim()",1000);
+
+    function tim(){
+        var dat=new Date();
+        var sen=dat.getSeconds();
+        var min=dat.getMinutes();
+        var hou=dat.getHours();
+        var se=document.getElementById("se");
+        var mi=document.getElementById("mi");
+        var ho=document.getElementById("ho");
+se.style.transform="rotate("+sen*6+"deg)";
+mi.style.transform="rotate("+min*6+"deg)";
+ho.style.transform="rotate("+(hou*30+min/2)+"deg)";
+    }
+</script>
+</html>
