@@ -1,14 +1,18 @@
-*{margin:0;padding:0}
+*{margin:0;padding:0;font-family: 黑体}
 header{overflow:hidden;height:55px;background:#228abf;border-bottom:1px solid #2378a7 }
 .logo{margin:10px 0 0 50px;width:36px;height:36px;background:white;overflow: hidden;float: left}
 .s_box{margin:18px;width:15px;height:15px;border:3px solid #228abf;}
 .login{float:right;margin:22px  94px 0 21px;color:white;cursor:pointer}
-.login p{display: inline-block;font:12px 黑体;position: relative;top:-3px;left:-2px}
+.login p{display: inline-block;font:12px;position: relative;top:-3px;left:-2px}
 .search{float: right;margin-top:14px;border-radius: 28px;border:0;height:28px;width:312px;background: white;overflow: hidden}
 .search input:first-child{outline-width:0;outline-style:none;cursor:pointer;margin:1px 0 0 10px;width:30px;height:26px;border:0;background: url("images/task_1_9_1_03.jpg")}
 .search input:last-child{outline-width:0;outline-style:none;border:0;height:22px;position: relative;top:-9px}
 .wrapper{width:1280px;}
-.left{width:260px;background: #2a2e3d;overflow: hidden}
-.user{width:130px;margin:18px auto}
-.u_pic{width:60px;height:60px;border-radius: 60px;background:white;overflow: hidden;display: inline-block}
-.u_pic div{width:50px;height:50px;border-radius: 50px;border:3px solid #2a2e3d;margin:2px;background:white}
+.left{width:260px;background: #2a2e3d;overflow: hidden;height:150px}
+.user{width:130px;margin:18px auto;color:#6a7c90}
+.u_pic{width:60px;height:60px;border-radius: 60px;background:#bababe;overflow: hidden;display: inline-block}
+.u_pic div{width:50px;height:50px;border-radius: 50px;border:3px solid #2a2e3d;margin:2px;background:#bababe}
+.u_name{color:#bababe;position: relative;top:-20px}
+.fav{margin-top: 24px}
+.fen1{float:left}
+.fen{float: right;border-left:2px solid #313545;width:72px;text-align: center}
