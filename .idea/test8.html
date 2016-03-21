@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>项目八</title>
+    <style>
+        *{ margin:0px; padding:0px;}
+        .clear{ zoom: 1;}
+        .clear:after{ content:""; display:block; clear:both;}
+
+        .col-8-3{ float:left; width:8.33%;}
+        .col-16{ float:left; width:16.66%;}
+        .col-25{ float:left; width:25%;}
+        .col-33{ float:left; width:33.33%;}
+        .col-50{ float:left; width:50%;}
+
+        .viewport{ padding:0px 10px;}
+        .content{ height:50px; background:#eee; margin-top:20px; margin-left:10px; margin-right:10px;}
+
+        p{ height:100px; line-height:100px; text-indent:20px;}
+
+        @media (max-width: 768px){
+            .rol-8-3{ float:left; width:8.33%;}
+            .rol-16{ float:left; width:16.66%;}
+            .rol-25{ float:left; width:25%;}
+            .rol-33{ float:left; width:33.33%;}
+            .rol-50{ float:left; width:50%;}
+            .rol-66{ float:left; width:66.66%;}
+            .rol-100{ float:left; width:100%;}
+        }
+    </style>
+</head>
+
+<body>
+<div class="viewport clear">
+    <div class="col-33 rol-50">
+        <div class="content"></div>
+    </div>
+    <div class="col-33 rol-50">
+        <div class="content"></div>
+    </div>
+    <div class="col-33 rol-100">
+        <div class="content"></div>
+    </div>
+    <div class="col-25 rol-25">
+        <div class="content"></div>
+    </div>
+    <div class="col-50  rol-50">
+        <div class="content"></div>
+    </div>
+    <div class="col-25  rol-25">
+        <div class="content"></div>
+    </div>
+    <div class="col-8-3  rol-16">
+        <div class="content"></div>
+    </div>
+    <div class="col-8-3  rol-16">
+        <div class="content"></div>
+    </div>
+    <div class="col-16  rol-66">
+        <div class="content"></div>
+    </div>
+    <div class="col-16  rol-25">
+        <div class="content"></div>
+    </div>
+    <div class="col-50  rol-25">
+        <div class="content"></div>
+    </div>
+</div>
+<p>
+    栅格化布局，主要是利用 media 这个标签， 配合百分比。 一般是把一个100%，分成12份再利用浮动排版。
+
+    如果是做手机的页面的话.因为手机浏览器兼容css3。所以可以利用display：box布局，个人觉得这个比栅格化布局好用。
+</p><br />
+<br />
+<br />
+<br />
+
+<p>如果您觉得学到了，请点个赞，您的支持是我们团队最大的动力</p>
+</body>
+</html>
