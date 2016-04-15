@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test18</title>
+    <style>
+        .red{padding:5px;background: black;float:left;color:white;margin:5px;}
+    </style>
+</head>
+<body>
+<input type="text">
+<button>左侧入</button>
+<button>右侧入</button>
+<button >左侧出</button>
+<button>右侧出</button>
+<div></div>
+</body>
+<script>
+function cc() {
+    var num = (document.getElementsByTagName('input'))[0];
+    var btn = document.getElementsByTagName('button');
+    var div1=(document.getElementsByTagName('div'))[0];
+
+    btn[0].onclick = function () {
+        var div2=document.createElement('div');
+        div2.className='red';
+        div2.innerHTML=num.value;
+        div1.insertBefore(div2,div1.childNodes[0]);
+    };
+    btn[1].onclick = function () {
+        var div2=document.createElement('div');
+        div2.className='red';
+        div2.innerHTML=num.value;
+        div1.appendChild(div2);
+    };
+    btn[2].onclick = function () {
+        alert(div1.firstChild.innerHTML);
+        div1[0].removeChild(div1.firstChild)
+    };
+    btn[3].onclick = function () {
+        alert(div1.lastChild.innerHTML);
+        div1.removeChild(div1.lastChild)
+    };
+
+    div1.onclick= function (ev) {
+        var ev =ev|| window.event;
+        var target = ev.target || ev.srcElement;
+   target.remove();
+
+    }
+}
+    cc();
+</script>
+</html>

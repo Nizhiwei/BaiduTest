@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test29</title>
+    <style>
+        input{margin:100px 5px 0 100px;border-radius: 5px;height:50px;border:2px solid darkgray;width:500px;outline: none}
+        button{margin:100px 0 0 0;border-radius: 5px;background: cornflowerblue;color:white;outline: none;border:0;width:90px;height:55px;cursor: pointer}
+        p{margin-left: 100px;color:darkgray;font:14px bold 黑体;}
+    </style>
+</head>
+<body>
+<input id="val" type="text"><button id="btn" onclick="cc()">验证</button>
+<p id="txt">必填，长度为4~16个字符</p>
+</body>
+<script>
+    function cc(){
+        var val=document.getElementById('val'),
+             btn=document.getElementById('btn'),
+             txt=document.getElementById('txt'),
+             num=0;
+        if (val.value.trim()){
+            var vl=val.value.trim();
+            for(var i=0;i<vl.length;i++){
+                if(vl.charCodeAt(i)>=0&&vl.charCodeAt(i)<=128){                  //英文字母、数字、英文符号应该在这个范围内，未找到编码表，从别人那看来的
+                    num+=1;
+                }else {
+                    num+=2;                                                     //范围外定义为汉字
+                }
+            }
+            if(16>num&&num>4){                                               
+                val.style.borderColor='green';
+                txt.innerHTML="名称格式正确";
+            }else{ val.style.borderColor='red';
+                txt.innerHTML="姓名长度不符";}
+        }else {
+            val.style.borderColor='red';
+            txt.innerHTML="姓名不能为空";
+        }
+
+    }
+</script>
+</html>
