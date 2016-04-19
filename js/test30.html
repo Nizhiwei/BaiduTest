@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test30</title>
+    <style>
+        *{margin:0;padding:0}
+        label{margin-left: 100px;}
+        label[for="pass2"]{margin-left: 69px;}
+        input{margin:5px;border-radius: 5px;height:25px;border:2px solid darkgray;width:400px;outline: none}
+        button{margin:100px 0 0 400px;border-radius: 5px;background: cornflowerblue;color:white;outline: none;border:0;width:90px;height:50px;cursor: pointer}
+        p{margin-left: 150px;color:darkgray;font:14px bold 黑体;}
+        .wrong{border-color: red;}
+        .wrong1{color:red}
+        .true1{color:#46ad15}
+        .true{border-color: #46ad15}
+        .onfo{border-color: deepskyblue}
+    </style>
+</head>
+<body>
+<label for="name">名称</label><input id="name" onblur="nameTr()" type="text"><p>必填，长度为4~16个字符</p>
+<label for="pass">密码</label><input id="pass" onblur="passTr()" type="password"><p></p>
+<label for="pass2">密码确认</label><input id="pass2" onblur="wordTr()" type="password"><p></p>
+<label for="email">邮箱</label><input id="email" onblur="emailTr()" type="text"><p>必填，长度为4~16个字符</p>
+<label for="phone">手机</label><input id="phone" onblur="phoneTr()" type="text"><p>必填，长度为4~16个字符</p>
+<button id="btn" onclick="btn()">提交</button>
+</body>
+<script>
+    var txt=document.getElementsByTagName('p');
+    var bl=false;
+//     聚焦变蓝
+    function blue(){
+        var pas=document.getElementsByTagName('input');
+        for(var i=0;i<pas.length;i++){
+        pas[i].onfocus=function(){this.className='onfo'}}
+    }
+    blue();
+//     姓名验证
+    function nameTr(){
+        var name=document.getElementById('name'),
+                num=0;
+        if (name.value.trim()){
+            var vl=name.value.trim();
+            for(var i=0;i<vl.length;i++){
+                if(vl.charCodeAt(i)>=0&&vl.charCodeAt(i)<=128){                  //英文字母、数字、英文符号应该在这个范围内，未找到编码表，从别人那看来的
+                    num+=1;
+                }else {
+                    num+=2;                                                     //范围外定义为汉字
+                }
+            }
+            if(16>=num&&num>=4){
+                name.className='true';
+                txt[0].innerHTML="名称格式正确";
+                txt[0].className='true1';
+                bl=true;
+            }else{ name.className='wrong';
+                txt[0].innerHTML="姓名长度不符";
+                txt[0].className='wrong1';
+                bl=false;
+            }
+        }else {
+            name.className='wrong';
+            txt[0].innerHTML="姓名不能为空";
+            txt[0].className='wrong1';
+            bl=false;
+        }
+    }
+//     密码验证
+    function passTr(){
+        var pass=document.getElementById('pass');
+        if(pass.value.length<=6){
+            pass.className='wrong';
+            txt[1].innerHTML="密码长度不够";
+            txt[1].className='wrong1';
+            bl=false;
+        }else {
+            pass.className='true';
+            txt[1].innerHTML="密码可用";
+            txt[1].className='true1';
+            bl=true;
+        }
+
+    }
+//     一致认证
+    function wordTr() {
+        var pass = document.getElementById('pass');
+        var word = document.getElementById('pass2');
+        if (word.value == pass.value&&word.value!=="") {
+            word.className = 'true';
+            txt[2].innerHTML = "密码一致";
+            txt[2].className='true1';
+            bl=true;
+        } else {
+            word.className = 'wrong';
+            txt[2].innerHTML = "密码不一致";
+            txt[2].className='wrong1';
+            bl=false;
+        }
+    }
+//     邮箱验证
+    function emailTr(){
+        var email=document.getElementById('email');
+        if(/.*@.*\..+/.test(email.value)){                                    //运用正则检查邮箱格式，未完全正确
+            email.className='true';
+            txt[3].innerHTML='邮箱正确';
+            txt[3].className='true1';
+            bl=true;
+        }else {
+            email.className='wrong';
+            txt[3].innerHTML='邮箱格式不正确';
+            txt[3].className='wrong1';
+            bl=false;
+        }
+
+
+    }
+//     手机验证
+    function phoneTr(){
+        var phone=document.getElementById('phone');
+        if(/\D/g.test(phone.value)||phone.value.length!=11){               //正则验证为数字且长度为11
+            phone.className='wrong';
+            txt[4].innerHTML='手机不正确';
+            txt[4].className='wrong1';
+            bl=false;
+        }else {
+            phone.className='true';
+            txt[4].innerHTML='手机正确';
+            txt[4].className='true1';
+            bl=true;
+        }
+    }
+//     提交按钮
+ function btn(){
+     blue();
+     nameTr();
+     passTr();
+     wordTr();
+     emailTr();
+     phoneTr();
+     if(bl==true){
+         alert('提交成功')
+     }else {
+         alert('提交失败')
+     }
+  }
+</script>
+</html>
