@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test31</title>
+    <style>
+        section{display: none;margin-top: 50px}
+        .show{display: block}
+        .hidden{display: none}
+    </style>
+</head>
+<body>
+<label for="yes">在校生</label><input id="yes" name="student" type="radio">
+<label for="no">非在校生</label><input id="no" name="student" type="radio">
+<section id="gra">
+    <select >
+    <option>北京</option>
+    <option>浙江</option>
+    <option>上海</option>
+    <option>广东</option>
+    </select>
+    <select >
+        <option>学校1</option>
+        <option>学校2</option>
+        <option>学校3</option>
+        <option>学校4</option>
+    </select>
+</section>
+<section id="ungra">
+   <label>就业单位</label><input type="text">
+</section>
+</body>
+<script>
+       var yes=document.getElementById('yes'),
+            no=document.getElementById('no'),
+            gra=document.getElementById('gra'),
+            ungra=document.getElementById('ungra'),
+            sec=gra.getElementsByTagName('select'),
+            arr=['学校1','学校2','学校3','学校4','学校5','学校6','学校7','学校8','学校9','学校10','学校11','学校12','学校13','学校14','学校15','学校16']
+//     事件绑定
+       function listener(ele,type,fn){
+           if(ele.attachEvent){
+               ele.attachEvent('on'+type,fn)
+           }else if(ele.addEventListener){
+               ele.addEventListener(type,fn,false)
+           }
+       }
+       listener(yes,'click',cc)
+       listener(no,'click',cc)
+       listener(sec[0],'change',ch)
+//    显示隐藏
+  function cc(){
+        if(yes.checked){
+            gra.className='show';
+            ungra.className='hidden';
+        }else if(no.checked){
+            ungra.className='show';
+            gra.className='hidden';
+        }
+    }
+//    学校绑定城市
+  function ch(){
+      var city=sec[0];
+      var n=city.selectedIndex;                              //查询选中的是第几个option
+      switch (n) {                                          //根据选中哪个城市更改学校
+          case 0:
+                  console.log('1')
+              cha(0)
+              break;
+          case 1:
+              cha(4)
+              break;
+          case 2:
+              cha(8)
+              break;
+          case 3:
+              cha(12)
+              break;
+      }
+
+  }
+//    学校改变
+    function cha(num){
+        var sch=sec[1].getElementsByTagName('option');
+        for(var i=0;i<sch.length;i++){                          //更改学校
+            sch[i].innerHTML=arr[i+num]
+        }
+    }
+</script>
+</html>
