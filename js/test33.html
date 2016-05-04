@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test33</title>
+    <style>
+        *{margin:0;padding:0}
+        table{border-collapse:collapse;}
+        td{width:40px;height:40px;border:1px solid gray;text-align: center;line-height: 40px}
+        .nobo{border:none}
+        section{margin:40px;}
+        button{margin-left: 10px}
+        #box{width:40px;height:40px;background:red;position:absolute;top:41px;left:41px;transition:all .2s ease}
+        .sm{width:40px;height:10px;background: blue;}
+    </style>
+</head>
+<body>
+<table>
+</table>
+<div id="box"><div class="sm"></div></div>
+<section>
+    <input type="text"><button>执行</button>
+    <button>go</button>
+    <button>left</button>
+    <button>right</button>
+    <button>back</button>
+</section>
+<script>
+    var box=document.getElementById('box');
+    var num=0;
+    var bTop=41;
+    var bLeft=41;
+    //创建表格
+    (function etable(){
+        var ta=(document.getElementsByTagName('table'))[0];
+        var tr1=ta.getElementsByTagName('tr');
+        for(var i=0;i<11;i++){
+            var etr=document.createElement('tr');                                   //建列
+            for(var j=0;j<11;j++){
+                etr.appendChild(document.createElement('td'));                      //建行
+            }
+            ta.appendChild(etr);
+            (tr1[0].getElementsByTagName('td'))[i].innerHTML=i;                    //列标
+            (tr1[0].getElementsByTagName('td'))[i].className='nobo';
+            (tr1[i].getElementsByTagName('td'))[0].innerHTML=i;                    //行标
+            (tr1[i].getElementsByTagName('td'))[0].className='nobo';
+        }
+    })()
+    //方块方向
+    function turnLeft(){
+        num+=90;
+        box.style.transform='rotate('+num+'deg)';
+    }
+    function turnRight(){
+        num-=90;
+        box.style.transform='rotate('+num+'deg)';
+    }
+    function turnBack(){
+        num+=180;
+        box.style.transform='rotate('+num+'deg)';
+    }
+    //方块移动
+    function move(){
+        var n=num;
+        while(n<0){
+            n=n+360;
+        }while(n>=360){
+            n=n-360;
+        }
+        switch (n){
+            case 90:                                                                 //判断方向为左
+                bLeft+=41;                                                           //左移
+                if(bLeft>=410){bLeft=410};                                          //不超出边缘
+                break;
+            case 270:
+                bLeft-=41;
+                if(bLeft<=41){bLeft=41};
+                break;
+            case 0:
+                bTop-=41;
+                if(bTop<=41){bTop=41};
+                break;
+            case 180:
+                bTop+=41;
+                if(bTop>=410){bTop=410};
+        }
+        box.style.top=bTop+'px';
+        box.style.left=bLeft+'px';
+    }
+
+    //事件绑定
+        function listener(ele, type, fn) {                              //event事件
+            if (ele.attachEvent) {
+                ele.attachEvent('on' + type,fn)
+            } else if (ele.addEventListener) {
+                ele.addEventListener(type, fn, false)
+            }
+        }
+        var btn = document.getElementsByTagName('button');              //绑定btn
+        listener(btn[2],'click',turnLeft);
+        listener(btn[3],'click',turnRight);
+        listener(btn[4],'click',turnBack);
+        listener(btn[1],'click',move);
+        listener(btn[0],'click',instruction);
+    //输入指令
+    function instruction(){
+        var txt=(document.getElementsByTagName('input'))[0].value;
+        switch (txt.toLowerCase()){                                //不区分大小写
+            case 'go':
+                move();
+                break;
+            case 'left':
+                turnLeft();
+                break;
+            case 'right':
+                turnRight();
+                break;
+            case 'back':
+                turnBack();
+                break;
+            default:
+                alert("输入指令错误，请重新尝试");
+        }
+    }
+</script>
+</body>
+</html>
