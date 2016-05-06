@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test34</title>
+    <style>
+        *{margin:0;padding:0}
+        table{border-collapse:collapse;}
+        td{width:40px;height:40px;border:1px solid gray;text-align: center;line-height: 40px}
+        .nobo{border:none}
+        section{margin:40px;}
+        button{margin-left: 10px}
+        #box{width:40px;height:40px;background:red;position:absolute;top:41px;left:41px;transition:all .2s ease}
+        .sm{width:40px;height:10px;background: blue;}
+    </style>
+</head>
+<body>
+<table>
+</table>
+<div id="box"><div class="sm"></div></div>
+<section>
+    <input type="text"><button onclick="instruction()">执行</button>
+</section>
+<section>
+    <ul>
+        <li>go</li>
+        <li>left</li>
+        <li>right</li>
+        <li>back</li>
+        <li>tralef</li>
+        <li>tratop</li>
+        <li>trarig</li>
+        <li>trabot</li>
+        <li>movlef</li>
+        <li>movtop</li>
+        <li>movrig</li>
+        <li>movbot</li>
+    </ul>
+</section>
+<script>
+    var box=document.getElementById('box');
+    var num=0;
+    var bTop=41;
+    var bLeft=41;
+    //创建表格
+    (function etable(){
+        var ta=(document.getElementsByTagName('table'))[0];
+        var tr1=ta.getElementsByTagName('tr');
+        for(var i=0;i<11;i++){
+            var etr=document.createElement('tr');                                   //建列
+            for(var j=0;j<11;j++){
+                etr.appendChild(document.createElement('td'));                      //建行
+            }
+            ta.appendChild(etr);
+            (tr1[0].getElementsByTagName('td'))[i].innerHTML=i;                    //列标
+            (tr1[0].getElementsByTagName('td'))[i].className='nobo';
+            (tr1[i].getElementsByTagName('td'))[0].innerHTML=i;                    //行标
+            (tr1[i].getElementsByTagName('td'))[0].className='nobo';
+        }
+    })()
+    //方块事件
+    var boxFn={
+        turnLeft: function (){
+            num+=90;
+            box.style.transform='rotate('+num+'deg)';
+        },
+        turnRight:function (){
+            num-=90;
+            box.style.transform='rotate('+num+'deg)';
+        },
+        turnBack:function (){
+        num+=180;
+        box.style.transform='rotate('+num+'deg)';
+        },
+        move:    function (){
+            var n=num;
+            while(n<0){n=n+360}
+            while(n>=360){n=n-360}
+            switch (n){
+                case 90:                                                                 //判断方向为左
+                    bLeft+=41;                                                           //左移
+                    if(bLeft>=410){bLeft=410};                                          //不超出边缘
+                    break;
+                case 270:
+                    bLeft-=41;
+                    if(bLeft<=41){bLeft=41};
+                    break;
+                case 0:
+                    bTop-=41;
+                    if(bTop<=41){bTop=41};
+                    break;
+                case 180:
+                    bTop+=41;
+                    if(bTop>=410){bTop=410};
+            }
+            box.style.top=bTop+'px';
+            box.style.left=bLeft+'px';
+        },
+        traLef:function (){
+            bLeft-=41;
+            if(bLeft<=41){bLeft=41};
+            box.style.left=bLeft+'px';
+        },
+        traTop:function (){
+            bTop-=41;
+            if(bTop<=41){bTop=41};
+            box.style.top=bTop+'px';
+        },
+        traRig:function (){
+            bLeft+=41;                                                           //左移
+            if(bLeft>=410){bLeft=410};
+            box.style.left=bLeft+'px';
+        },
+        traBot:function (){
+            bTop+=41;
+            if(bTop>=410){bTop=410};
+            box.style.top=bTop+'px';
+        },
+        movLef:function (){
+            box.style.transform='rotate(270deg)';
+            num=270;
+            boxFn.move();
+        },
+        movRig:function (){
+            box.style.transform='rotate(90deg)';
+            num=90;
+            boxFn.move();
+        },
+        movBot:function (){
+            box.style.transform='rotate(180deg)';
+            num=180;
+            boxFn.move();
+        },
+        movTop:function (){
+            box.style.transform='rotate(0deg)';
+            num=0;
+            boxFn.move();
+        }
+    }
+    //输入指令
+    function instruction(){
+        var txt=(document.getElementsByTagName('input'))[0].value;
+        switch (txt.toLowerCase()){                                //不区分大小写
+            case 'go':
+                boxFn.move();
+                break;
+            case 'left':
+                boxFn.turnLeft();
+                break;
+            case 'right':
+                boxFn.turnRight();
+                break;
+            case 'back':
+                boxFn.turnBack();
+                break;
+            case 'tralef':
+                boxFn.traLef();
+                break;
+            case 'trarig':
+                boxFn.traRig();
+                break;
+            case 'tratop':
+                boxFn.traTop();
+                break;
+            case 'trabot':
+                boxFn.traBot();
+                break;
+            case 'movlef':
+                boxFn.movLef();
+                break;
+            case 'movrig':
+                boxFn.movRig();
+                break;
+            case 'movbot':
+                boxFn.movBot();
+                break;
+            case 'movtop':
+                boxFn.movTop();
+                break;
+            default:
+                alert("输入指令错误，请重新尝试");
+        }
+    }
+</script>
+</body>
+</html>
