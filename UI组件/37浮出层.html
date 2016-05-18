@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test37</title>
+    <style>
+        *{margin:0;padding:0}
+        .mask{background:rgba(0,0,0,0.5);width:100%;height:100%;position: absolute;top:0;left:0;display: none}
+        .popup{background:white;width:400px;height:200px;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%)}
+        .title{width:400px;height:50px;background:black;color:white;line-height:50px;text-indent: 1em}
+        .close{float:right;margin-right: 10px;cursor:pointer}
+        .content{margin:15px 0 0 20px}
+        .btn{float:left;width:50px;height:20px;background: black;color:white;border:0;margin-right:25px;cursor:pointer;outline:none}
+        .triangle{float:left;width:0;height:0;border-right:0 solid transparent;border-bottom:20px solid black;border-left:20px solid transparent;border-top:0 solid transparent  }
+        .bottom{position: absolute;right:0;bottom: -1px}
+    </style>
+</head>
+<body>
+<button>弹出</button>
+<div class="mask">
+    <div class="popup">
+        <div class="title">
+            <span class="close">×</span>
+        </div>
+        <div class="content">这是一个浮出层</div>
+        <div class="bottom">
+            <button class="btn">YES</button>
+            <button class="btn">NO</button>
+            <div class="triangle"></div>
+        </div>
+    </div>
+</div>
+<script>
+    function cn(cl,i){return (document.getElementsByClassName(cl))[i]}
+    function Show(){cn('mask',0).style.display="block"}
+    function Hidden(){cn('mask',0).style.display="none"}
+    function listener(ele,type,fn){
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn,false)
+        }else if(ele.attachEvent){
+            ele.attachEvent('on'+type,fn)
+        }
+    }
+    function down(event){
+         event=window.event||event;
+        var cr=cn('popup',0);
+        var mTop=event.clientY-cr.offsetTop;                                     //鼠标坐标减元素坐标
+        var mLeft=event.clientX-cr.offsetLeft;
+        document.onmousemove=function(event){
+            cr.style.top=event.clientY-mTop+'px';
+            cr.style.left=event.clientX-mLeft+'px';
+    }
+        document.onmouseup=function(){
+            document.onmousemove=null;                                               //清除，原来加在元素上，速度跟不上，加在document上就行了
+            document.onmouseup=null
+    }
+    }
+    function scale(event){
+        var disL=event.clientX-cn('popup',0).offsetWidth;
+        var disT=event.clientY-cn('popup',0).offsetHeight;
+        document.onmousemove=function(event){
+            var numW=event.clientX-disL;
+            var numH=event.clientY-disT
+            if(numW<=350){numW=350}
+            cn('popup',0).style.width=numW+'px';
+            cn('title',0).style.width=numW+'px';
+            if(numH<=150){numH=150}
+            cn('popup',0).style.height=numH+'px';
+        }
+
+        document.onmouseup=function(){
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+    }
+    (function (){
+        var btn=document.getElementsByTagName('button');
+        listener(btn[0],'click',Show)
+        listener(btn[1],'click',Hidden)
+        listener(btn[2],'click',Hidden)
+        listener(cn('close',0),'click',Hidden)
+        listener(cn('mask',0),'click',Hidden)
+        listener(cn('popup',0),'click',function(e){e.stopPropagation()})
+        listener(cn('title',0),'mousedown',down)
+        listener(cn('triangle',0),'mousedown',scale)
+    })()
+
+</script>
+</body>
+</html>
