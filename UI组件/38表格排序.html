@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test38</title>
+    <style>
+        #tab td{width:160px;height:55px;border:2px solid gray;text-align: center}
+        .htd{background:black;color:white;}
+        .triangle{
+            width:0;
+            border-left:8px solid transparent;
+            border-right:8px solid transparent;
+            border-top:0px solid transparent;
+            border-bottom:16px solid white;
+            float: left;margin-left: 30px;
+        }
+        .triangleB{
+            width:0;
+            border-left:8px solid transparent;
+            border-right:8px solid transparent;
+            border-top:16px solid white;
+            border-bottom:0px solid transparent;
+            float: right;margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+<table id="tab"></table>
+</body>
+<script>
+    var th=['姓名','语文','数学','英语','总分'],
+         tr=[['小明',80,90,70,240], ['小红',90,60,90,240], ['小亮',60,100,70,230], ['小强',100,70,80,250]],
+         tab=document.getElementById('tab');
+
+         function cc(){
+             tab.innerHTML="";                                //清空表格
+             var htr=document.createElement('tr');
+             tab.appendChild(htr);
+             for(var i=0;i<th.length;i++){                                         //表头建立
+                 var htd=document.createElement('td');
+                 htd.className="htd";
+                 htd.innerHTML=th[i]+"<div class='triangle' index="+i+" onclick='sort1(this)'></div><div class='triangleB' index="+i+" onclick='sort2(this)'></div>";    //放入按钮，绑定事件，linstener在清除表格后会无法触发事件，添加自定义属性index来帮助二维数组依据第几组数据排序
+                 htr.appendChild(htd);
+             }
+             for(var i=0;i<tr.length;i++){                                   //填充表格内容
+                 var rtr=document.createElement('tr');
+                 for(var j=0;j<tr[i].length;j++){
+                     var rtd=document.createElement('td');
+                     rtd.innerHTML=tr[i][j];
+                     rtr.appendChild(rtd);
+                 }
+                 tab.appendChild(rtr);
+             }
+    };
+    cc()
+    function sort1(e){                                            //升序排序，依靠index来确定依靠哪组数据排序
+        var j=e.getAttribute('index');
+        tr.sort(function(x,y){
+            return x[j]-y[j];
+        });
+        cc()
+    }
+    function sort2(e){
+        var j=e.getAttribute('index');
+        tr.sort(function(x,y){
+            return y[j]-x[j];
+        });
+        cc()
+    }
+</script>
+</html>

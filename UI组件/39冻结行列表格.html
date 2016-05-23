@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test39</title>
+    <style>
+        *{margin:0;padding:0}
+        table{margin: 1100px 0 2000px 500px;position: absolute;}
+        td,th{border:1px solid black;width:100px;height:50px;text-align: center;}
+        .po{position: fixed;top:0;background: black;color:white}
+    </style>
+</head>
+<body>
+<table id="tb">
+    <tr><th>姓名</th><th>年龄</th></tr>
+    <tr><td>张三</td><td>22</td></tr>
+    <tr><td>张发</td><td>13</td></tr>
+    <tr><td>张他</td><td>15</td></tr>
+    <tr><td>张三</td><td>13</td></tr>
+    <tr><td>张我</td><td>22</td></tr>
+    <tr><td>张人</td><td>22</td></tr>
+    <tr><td>张三</td><td>66</td></tr>
+    <tr><td>张个</td><td>32</td></tr>
+    <tr><td>张三</td><td>52</td></tr>
+    <tr><td>张好</td><td>24</td></tr>
+    <tr><td>张吗</td><td>12</td></tr>
+    <tr><td>张三</td><td>23</td></tr>
+    <tr><td>张他</td><td>42</td></tr>
+    <tr><td>张三</td><td>23</td></tr>
+    <tr><td>张三</td><td>22</td></tr>
+    <tr><td>张一</td><td>22</td></tr>
+    <tr><td>张看</td><td>22</td></tr>
+    <tr><td>张他</td><td>22</td></tr>
+    <tr><td>张额</td><td>32</td></tr>
+</table>
+</body>
+<script>
+    window.onscroll=function(){
+        var tb=document.getElementById('tb');
+        var tr=tb.getElementsByTagName('tr');
+        var scroll=document.body.scrollTop||document.documentElement.scrollTop;            //后者兼容IE，滚动条的距离
+if(scroll>=tb.offsetTop&&scroll<tb.offsetTop+tb.offsetHeight){
+    tr[0].className='po'
+}else{
+    tr[0].className=''
+}
+    }
+</script>
+</html>
