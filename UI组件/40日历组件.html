@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test40</title>
+    <style>
+        td,th{width:80px;height:40px;border: 1px solid gray;text-align: center}
+    </style>
+</head>
+<body>
+<div id="calendar"></div>
+</body>
+<script>
+    var calendar=document.getElementById('calendar');
+    var odate=new Date();
+    function btn(){
+        var ybtn=document.createElement('select');
+        var mbtn=document.createElement('select');
+        for(var i=0;i<12;i++){
+            var mon=document.createElement('option');
+            mon.innerHTML=i+1+"月";
+            mbtn.appendChild(mon);
+        }
+        for(var i=0;i<12;i++){
+            var yea=document.createElement('option');
+            yea.innerHTML=i+2010+"年";
+            ybtn.appendChild(yea);
+        }
+        calendar.appendChild(ybtn);
+        calendar.appendChild(mbtn);
+    };
+    btn();
+    function cc(){
+        var y=odate.getFullYear();
+        var m=odate.getMonth();
+        var d=odate.getDate();
+        var s=odate.getDay();
+        var ms=new Date(y,m,1).getDay();
+        var dnum,hang;
+        (y%4==0)?dnum=0:dnum=1;                                       //闰年判断
+       var darr=[31,28+dnum,31,30,31,30,31,31,30,31,30,31],
+            sarr=["日","一","二","三","四","五","六"]
+        if(ms>4){hang=6}else{hang=5}                             //行数判断，一号大于星期四后，6行，不精确
+        //建立日历标题
+        var table=document.createElement('table');
+        table.className="first"
+        var htr=document.createElement('tr');
+        for(var i=0;i<7;i++){
+            var htd=document.createElement('th');
+            htd.innerHTML=sarr[i];
+            htr.appendChild(htd)
+        };
+        table.appendChild(htr);
+        //建立日历表格
+        for(var i=0;i<hang;i++) {
+            var tr = document.createElement('tr');
+            for (var j = 0; j < 7; j++) {
+                var td = document.createElement('td');
+                tr.appendChild(td);
+            }
+            table.appendChild(tr)
+            calendar.appendChild(table)
+        }
+        //获取td，填写日历
+        var atd=calendar.getElementsByTagName('td');
+        for(var i=0;i<atd.length;i++){
+            atd[i].innerHTML="";
+        }
+        for(var i=0;i<darr[m];i++){
+            atd[i+ms].innerHTML=i+1;
+        }
+
+    };
+    cc();
+    function cli(){
+        var select=document.getElementsByTagName('select');
+        for(var i=0;i<select.length;i++){
+        select[i].onchange=function(){
+            var table=document.getElementsByTagName('table');
+            if(table[0]){
+                table[0].parentNode.removeChild(table[0])
+            }
+            var year=parseInt((select[0].options[select[0].selectedIndex].text));
+            var month=parseInt((select[1].options[select[1].selectedIndex].text));
+            odate.setFullYear(year);
+            odate.setMonth(month-1);
+            cc();
+            console.log(year+"+"+month+"+"+odate)
+        }
+        }
+    }
+cli()
+</script>
+</html>
